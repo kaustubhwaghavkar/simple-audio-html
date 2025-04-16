@@ -3,23 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <title>Play Audio on Click</title>
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: sans-serif;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    button {
+      font-size: 1.2em;
+      padding: 12px 24px;
+      border: none;
+      background-color: #ff66b2;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff3385;
+    }
+  </style>
 </head>
-<body style="text-align:center; padding-top: 50px; font-family: sans-serif;">
+<body>
 
-  <h2>Click anywhere on the page to play music 🎵</h2>
+  <h2>Tap the button to play music 🎵</h2>
+  <button onclick="playMusic()">Play</button>
 
-<audio id="bgAudio">
-  <source src="https://dl.dropboxusercontent.com/scl/fi/fw6orx6ldwdwd0srpy4kh/All-of-Me-Instrumental.mp3?rlkey=ssfdhq9lagdj90t0h27zslh8o&raw=1" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+  <audio id="bgMusic">
+    <source src="https://dl.dropboxusercontent.com/scl/fi/fw6orx6ldwdwd0srpy4kh/All-of-Me-Instrumental.mp3?rlkey=ssfdhq9lagdj90t0h27zslh8o&raw=1" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
   <script>
-    const audio = document.getElementById("myAudio");
+    const audio = document.getElementById('bgMusic');
 
-    document.body.addEventListener("click", () => {
-      audio.play().catch((e) => {
-        console.log("Audio play failed:", e);
+    function playMusic() {
+      audio.play().then(() => {
+        console.log("Audio started");
+      }).catch((e) => {
+        console.error("Playback failed:", e);
       });
-    }, { once: true }); // only plays once
+    }
   </script>
 
 </body>
